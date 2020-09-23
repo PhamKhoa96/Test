@@ -1,0 +1,73 @@
+CAC BUOC CO BAN
+-- xem trang thai cua git
+git status
+
+-- tao local repository
+git init		(mặc định nó sẽ tạo ra repository có tên là master)
+
+-- add file vao local repository
+git add .
+git add <filename>
+
+-- commit file de chuan bi push len github
+git commit -m "<comment>"
+
+viet tat cho ca add & commit: git commit -a -m "<comment>"
+
+-- xem history commit
+git log
+
+-- day len github
+git remote add <name> https://github.com/PhamKhoa96/NeuralNetwork_DeepLearning.git     (đặt bí danh <name> cho URL https://github.com/PhamKhoa96/NeuralNetwork_DeepLearning.git trên github)
+git push <name>					(đẩy dữ liệu ở branch tại repository hiện tại đang làm việc lên github thông qua URL <name>  -> lúc này nếu ta chưa tạo branch trên github thì nó sẽ thông báo bắt ta phải tạo branch trên github)
+git push --set-upstream <name> master           (tạo branch trên github, branch này có tên là master. Và đẩy dữ liệu tại local repository hiện tại lên branch này)
+những lần sau thì chỉ cần: git push hoặc chỉ cần ghi gp
+
+-- cách clone git của ng khac:
+git clone <link_git>
+
+-- backup lại snapshot ở local repository
+git revert <id_lay_tu_lenh_git log>
+nhấn: Ctrl + C để dừng lại
+shift + :
+q
+
+-- lấy code của bạn bè khi họ đã chỉnh sửa trên repository chung
+git pull
+
+NGOAI RA CON CO CAC LENH
+-- hiển thị danh sách các remotes (các tên bí danh cho URL)
+git remote
+
+-- xóa local repository
+rm -rf .git*
+
+-- xem lại trạng thái
+ls -lah
+
+
+CAC BUOC NANG CAO
+-- tao branch ở local để dev các function song song, và sau khi pull request của branch được accepted bởi reviewer thì nó sẽ được merge vào branch chính (branch master)
+git branch <ten_branch> 
+
+-- xem co bao nhieu branch, và ta đang làm việc ở branch nào (ở local)
+git branch
+
+-- chọn branch để làm việc ở local
+git checkout <ten_branch>
+
+-- day len branch tren github 
+git push <name>						(đẩy dữ liệu ở branch tại local repository hiện tại đang làm việc lên github thông qua URL <name>  -> lúc này nếu ta chưa tạo branch trên github thì nó sẽ thông báo bắt ta phải tạo branch trên github)
+git push --set-upstream <name> <name_branch>           	(tạo branch trên github, branch này có tên là <name_branch>. Và đẩy dữ liệu tại branch đang làm việc ở local repository hiện tại lên branch này)
+những lần sau thì chỉ cần: git push hoặc chỉ cần ghi gp
+
+-- Cách 1: merge không cần pull request
+-- merge dữ liệu từ branch phụ lên branch master ở local, sau đó push lên github
+git checkout master           	(quay lại local repository chính)
+git merge <ten_branch>		(merge branch <ten_branch> vào branch master)
+gp				(push lên repository trên github)
+
+-- Cách 2: merge thông qua pull request trên github
+push thay đổi lên branch phụ
+trên github: tạo pull request, reviewer sẽ review code, add comment, nếu OK thì ta merge vào branch master
+pull các thay đổi từ branch master trên github về local repository master: git pull
